@@ -1,7 +1,15 @@
 import { repositoryName } from "@/prismicio";
 import { PrismicPreview } from "@prismicio/next";
+import localFont from "next/font/local";
 
 import "./globals.css";
+
+const urbanist = localFont({
+  src: '../../public/fonts/Urbanist-VariableFont.woff2',
+  weight: '100 900',
+  display: 'swap',
+  variable: '--font-urbanist',
+});
 
 export default function RootLayout({
   children,
@@ -9,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={urbanist.variable}>
+      <body className="bg-slate-900 text-slate-100">{children}</body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
   );
