@@ -3,6 +3,7 @@ import { Content, KeyTextField } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { FC } from 'react';
 import AnimatedContent from './AnimatedContent';
+import AnimatedShapes from './AnimatedShapes';
 
 /**
  * Props for `Hero`.
@@ -38,7 +39,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
               <span className="block text-slate-300">
                 {renderLetters(slice.primary.first_name, 'first')}
               </span>
-              <span className="-mt-[0.05em] block text-slate-500">
+              <span className="-mt-[0.15em] block text-slate-500">
                 {renderLetters(slice.primary.last_name, 'last')}
               </span>
             </h1>
@@ -47,7 +48,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             </span>
           </div>
         </AnimatedContent>
-        <div></div>
+        <AnimatedShapes />
       </div>
     </Bounded>
   );
