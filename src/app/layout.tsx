@@ -22,6 +22,7 @@ export default function RootLayout({
       <body className="bg-slate-900 text-slate-100">
         <Header />
         <main>{children}</main>
+        <div className="min-h-screen" />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
