@@ -1,8 +1,9 @@
-import { repositoryName } from "@/prismicio";
-import { PrismicPreview } from "@prismicio/next";
-import localFont from "next/font/local";
+import { repositoryName } from '@/prismicio';
+import { PrismicPreview } from '@prismicio/next';
+import localFont from 'next/font/local';
 
-import "./globals.css";
+import Header from '@/components/Header';
+import './globals.css';
 
 const urbanist = localFont({
   src: '../../public/fonts/Urbanist-VariableFont.woff2',
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={urbanist.variable}>
-      <body className="bg-slate-900 text-slate-100">{children}</body>
+      <body className="bg-slate-900 text-slate-100">
+        <Header />
+        <main>{children}</main>
+      </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
   );
