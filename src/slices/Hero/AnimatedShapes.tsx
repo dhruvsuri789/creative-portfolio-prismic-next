@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
@@ -79,13 +79,6 @@ const materials = [
   new THREE.MeshStandardMaterial({ metalness: 0.5, color: 0x2c3e50, roughness: 0.1 }),
 ];
 
-const soundEffects = [
-  new Audio('/sounds/knock-1.ogg'),
-  new Audio('/sounds/knock-2.ogg'),
-  new Audio('/sounds/knock-3.ogg'),
-  new Audio('/sounds/knock-4.ogg'),
-];
-
 function Geometries() {
   return geometries.map(({ position, rate, geometry }, index) => (
     <Geometry
@@ -94,7 +87,6 @@ function Geometries() {
       position={new THREE.Vector3(...position.map((v) => v * 2))}
       geometry={geometry}
       materials={materials}
-      soundEffects={soundEffects}
     />
   ));
 }
@@ -104,12 +96,23 @@ type GeometryProps = {
   position: THREE.Vector3;
   geometry: THREE.BufferGeometry;
   materials: THREE.Material[];
-  soundEffects: HTMLAudioElement[];
 };
 
-function Geometry({ rate, position, geometry, materials, soundEffects }: GeometryProps) {
+function Geometry({ rate, position, geometry, materials }: GeometryProps) {
   const meshRef = useRef<THREE.Group>(null);
   const [visible, setVisible] = useState(false);
+  const [audioElements, setAudioElements] = useState<HTMLAudioElement[]>([]);
+
+  // Initialize audio elements on the client side
+  useEffect(() => {
+    const sounds = [
+      new Audio('/sounds/knock-1.ogg'),
+      new Audio('/sounds/knock-2.ogg'),
+      new Audio('/sounds/knock-3.ogg'),
+      new Audio('/sounds/knock-4.ogg'),
+    ];
+    setAudioElements(sounds);
+  }, []);
 
   const startingMaterial = getRandomMaterial();
 
@@ -120,7 +123,10 @@ function Geometry({ rate, position, geometry, materials, soundEffects }: Geometr
   function handleClick(e: ThreeEvent<MouseEvent>) {
     const mesh = e.object as THREE.Mesh;
 
-    gsap.utils.random(soundEffects).play();
+    // Only play sound if audio elements are available
+    if (audioElements.length > 0) {
+      gsap.utils.random(audioElements).play();
+    }
 
     gsap.to(mesh.rotation, {
       x: `+=${gsap.utils.random(0, 2)}`,
