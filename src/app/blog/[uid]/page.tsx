@@ -1,10 +1,9 @@
 import { asImageSrc } from '@prismicio/client';
-import { SliceZone } from '@prismicio/react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import ContentBody from '@/components/ContentBody';
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
 
 type Params = { uid: string };
 
@@ -13,7 +12,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const client = createClient();
   const page = await client.getByUID('blog_post', uid).catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return <ContentBody page={page} />;
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
