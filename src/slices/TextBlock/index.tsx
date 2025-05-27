@@ -1,4 +1,3 @@
-import Bounded from '@/components/Bounded';
 import { Content } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import { FC } from 'react';
@@ -13,11 +12,9 @@ export type TextBlockProps = SliceComponentProps<Content.TextBlockSlice>;
  */
 const TextBlock: FC<TextBlockProps> = ({ slice }) => {
   return (
-    <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-      <div className="prose prose-invert prose-lg prose-slate">
-        <PrismicRichText field={slice.primary.content} />
-      </div>
-    </Bounded>
+    <div className="prose prose-lg prose-invert">
+      <PrismicRichText field={slice.primary.content} />
+    </div>
   );
 };
 
