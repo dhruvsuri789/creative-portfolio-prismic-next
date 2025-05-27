@@ -15,7 +15,11 @@ export type TechListProps = SliceComponentProps<Content.TechListSlice>;
  */
 const TechList: FC<TechListProps> = ({ slice }) => {
   return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+    <section
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+      className="overflow-hidden"
+    >
       <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6 md:py-14 lg:py-16">
         <Heading as="h2" size="xl" className="mb-8">
           {slice.primary.heading}

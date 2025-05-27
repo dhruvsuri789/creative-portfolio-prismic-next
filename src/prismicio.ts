@@ -13,6 +13,8 @@ export const repositoryName = process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.
 const routes: Route[] = [
   { type: 'page', uid: 'home', path: '/' },
   { type: 'other_pages', path: '/:uid' },
+  { type: 'blog_post', path: '/blog/:uid' },
+  { type: 'project', path: '/project/:uid' },
 ];
 
 /**
