@@ -2,6 +2,7 @@ import { repositoryName } from '@/prismicio';
 import { PrismicPreview } from '@prismicio/next';
 import localFont from 'next/font/local';
 
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import './globals.css';
 
@@ -22,7 +23,7 @@ export default function RootLayout({
       <body className="bg-slate-900 text-slate-100">
         <Header />
         <main>{children}</main>
-        <div className="min-h-screen" />
+        <Footer />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
