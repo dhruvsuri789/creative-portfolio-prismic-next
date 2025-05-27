@@ -20,10 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={urbanist.variable}>
-      <body className="bg-slate-900 text-slate-100">
+      <body className="relative min-h-screen bg-slate-900 text-slate-100">
         <Header />
         <main>{children}</main>
         <Footer />
+        <div className="background-gradient absolute inset-0 -z-50 min-h-screen" />
+        <div className="pointer-events-none absolute inset-0 -z-40 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light" />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
