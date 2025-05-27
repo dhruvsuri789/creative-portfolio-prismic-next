@@ -126,7 +126,7 @@ export default function ContentList({
             isFilled.keyText(item.data.title) && (
               <li
                 key={`${index}-${item.id}`}
-                className="opacity-0f list-item"
+                className="list-item opacity-0"
                 onMouseEnter={() => onMouseEnter(index)}
                 ref={(el) => {
                   if (!el) return;
